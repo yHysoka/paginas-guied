@@ -441,9 +441,10 @@
 
 
         <p class="cta-whats">
-            Prefere falar direto? <a href="https://wa.me/558591859751" target="_blank">Clique aqui para falar pelo WhatsApp.</a>.
+            Prefere falar direto? <a href="https://wa.me/558591859751" target="_blank">Clique aqui para falar pelo
+                WhatsApp.</a>.
         </p>
-    </section>  
+    </section>
 
     <footer class="footer">
         <div class="footer-top">
@@ -465,47 +466,44 @@
         </p>
     </footer>
 
+    <!-- SCRIPTS -->
     <script>
-    function iniciarContagemReal() {
+        function iniciarContagemReal() {
 
-        // Dia REAL que vai liberar
-        const lancamento = new Date("2025-12-16T00:00:00");
+            // Dia REAL que vai liberar
+            const lancamento = new Date("2025-12-16T00:00:00");
 
-        // Dia que a contagem de dias completos começou oficialmente
-        const inicio = new Date("2025-12-03T00:00:00");
+            // Dia que a contagem de dias completos começou oficialmente
+            const inicio = new Date("2025-12-03T00:00:00");
 
-        function atualizar() {
-            const agora = new Date();
-            const diff = lancamento - agora;
+            function atualizar() {
+                const agora = new Date();
+                const diff = lancamento - agora;
 
-            if (diff <= 0) {
-                document.getElementById("countdown").innerHTML = "Disponível!";
-                document.getElementById("progressBar").style.width = "100%";
-                return;
+                if (diff <= 0) {
+                    document.getElementById("countdown").innerHTML = "Disponível!";
+                    document.getElementById("progressBar").style.width = "100%";
+                    return;
+                }
+
+                const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutos = Math.floor((diff / (1000 * 60)) % 60);
+                const segundos = Math.floor((diff / 1000) % 60);
+
+                document.getElementById("countdown").innerHTML =
+                    `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+
+                const total = lancamento - inicio;
+                const perc = (1 - diff / total) * 100;
+                document.getElementById("progressBar").style.width = perc + "%";
             }
 
-            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutos = Math.floor((diff / (1000 * 60)) % 60);
-            const segundos = Math.floor((diff / 1000) % 60);
-
-            document.getElementById("countdown").innerHTML =
-                `${dias}d ${horas}h ${minutos}m ${segundos}s`;
-
-            // Barra de progresso precisa ser calculada desde o início real
-            const total = lancamento - inicio;
-            const perc = (1 - diff / total) * 100;
-            document.getElementById("progressBar").style.width = perc + "%";
+            atualizar();
+            setInterval(atualizar, 1000);
         }
 
-        atualizar();
-        setInterval(atualizar, 1000);
-    }
-
-    iniciarContagemReal();
-</script>
-
-
+        iniciarContagemReal();
 
         // SCROLL SUAVE
         function scrollToCTA() {
@@ -516,6 +514,7 @@
             document.getElementById("valor").scrollIntoView({ behavior: "smooth" });
         }
     </script>
+
 
 
 </body>
