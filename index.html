@@ -423,27 +423,35 @@
 
             <input type="email" name="email" placeholder="Seu melhor e-mail" required>
 
-            <!-- Sem captcha para fluidez -->
             <input type="hidden" name="_captcha" value="false">
-
-            <!-- Assunto do e-mail -->
             <input type="hidden" name="_subject" value="Nova inscrição no teste fechado do Guied">
+            <input type="hidden" name="_redirect" value="true">
 
-            <!-- Redireciona após envio -->
+            <!-- Corrigem problemas de redirecionamento no FormSubmit -->
+            <input type="hidden" name="_referrer" value="https://yhysoka.github.io/">
+            <input type="hidden" name="_origin" value="https://yhysoka.github.io">
+
+            <!-- Página de obrigado -->
             <input type="hidden" name="_next" value="https://yhysoka.github.io/paginas-guied/obrigado.html">
 
-
-            <!-- Nome opcional do formulário -->
             <input type="hidden" name="_template" value="table">
 
             <button type="submit">Quero participar</button>
         </form>
 
-
         <p class="cta-whats">
             Prefere falar direto? <a href="https://wa.me/558591859751" target="_blank">Clique aqui para falar pelo
                 WhatsApp.</a>.
         </p>
+    </section>
+
+
+
+
+    <p class="cta-whats">
+        Prefere falar direto? <a href="https://wa.me/558591859751" target="_blank">Clique aqui para falar pelo
+            WhatsApp.</a>.
+    </p>
     </section>
 
     <footer class="footer">
