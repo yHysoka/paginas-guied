@@ -466,44 +466,45 @@
     </footer>
 
     <script>
-        // ===========================
-        // CONTAGEM REAL PARA 15/12/2025
-        // ===========================
+    function iniciarContagemReal() {
 
-        function iniciarContagemReal() {
-            // Data de lançamento REAL
-            const lancamento = new Date("2025-12-15T00:00:00");
+        // Dia REAL que vai liberar
+        const lancamento = new Date("2025-12-16T00:00:00");
 
-            function atualizar() {
-                const agora = new Date();
-                const diff = lancamento - agora;
+        // Dia que a contagem de dias completos começou oficialmente
+        const inicio = new Date("2025-12-03T00:00:00");
 
-                if (diff <= 0) {
-                    document.getElementById("countdown").innerHTML = "Disponível!";
-                    document.getElementById("progressBar").style.width = "100%";
-                    return;
-                }
+        function atualizar() {
+            const agora = new Date();
+            const diff = lancamento - agora;
 
-                const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                const minutos = Math.floor((diff / (1000 * 60)) % 60);
-                const segundos = Math.floor((diff / 1000) % 60);
-
-                // Atualiza cronômetro
-                document.getElementById("countdown").innerHTML =
-                    `${dias}d ${horas}h ${minutos}m ${segundos}s`;
-
-                // Barra de progresso
-                const total = lancamento - new Date("2025-12-02T00:00:00");
-                const perc = 100 - (diff / total * 100);
-                document.getElementById("progressBar").style.width = perc + "%";
+            if (diff <= 0) {
+                document.getElementById("countdown").innerHTML = "Disponível!";
+                document.getElementById("progressBar").style.width = "100%";
+                return;
             }
 
-            atualizar();
-            setInterval(atualizar, 1000);
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutos = Math.floor((diff / (1000 * 60)) % 60);
+            const segundos = Math.floor((diff / 1000) % 60);
+
+            document.getElementById("countdown").innerHTML =
+                `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+
+            // Barra de progresso precisa ser calculada desde o início real
+            const total = lancamento - inicio;
+            const perc = (1 - diff / total) * 100;
+            document.getElementById("progressBar").style.width = perc + "%";
         }
 
-        iniciarContagemReal();
+        atualizar();
+        setInterval(atualizar, 1000);
+    }
+
+    iniciarContagemReal();
+</script>
+
 
 
         // SCROLL SUAVE
